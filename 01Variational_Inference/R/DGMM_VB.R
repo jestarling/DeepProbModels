@@ -1,7 +1,7 @@
 # Fitting a discrete Gaussian mixture model by variational Bayes
 # Coordinate-ascent variational inference
 
-# utility for equal-weight Gaussian mixture
+# utility for equal-variance Gaussian mixture
 dnormix = function(x, mu, w) {
 	K = length(mu)
 	out = rep(0, length(x))
@@ -71,7 +71,7 @@ while({!converged} & {step_counter <= max_steps}) {
 ELBO_tracker = na.omit(ELBO_tracker)
 converged; step_counter
 
-plot(tail(ELBO_tracker, -5))
+plot(tail(ELBO_tracker, -10))
 
 sort(m_hat)
 sort(mu_true)
