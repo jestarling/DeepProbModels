@@ -1,0 +1,226 @@
+K = 5#
+p_true = rgamma(K, 1, 1)#
+p_true = p_true/sum(p_true
+p_true = p_true/sum(p_true)
+p_true
+K = 5#
+p_true = rgamma(K, 2, 1)#
+p_true = p_true/sum(p_true)#
+#
+p_true
+tau = 3
+p_true = rgamma(K, 2, 1)#
+p_true = p_true/sum(p_true)#
+#
+mu_true = rnorm(K, 0, 3)
+N = 1000
+# Fitting a discrete Gaussian mixture model by variational Bayes#
+#
+K = 5#
+tau = 3#
+#
+N = 1000#
+#
+p_true = rgamma(K, 2, 1)#
+p_true = p_true/sum(p_true)#
+mu_true = rnorm(K, 0, 3)#
+c_true = sample(K, size=N, replace=TRUE, prob=p_true)
+c_true
+# Fitting a discrete Gaussian mixture model by variational Bayes#
+#
+K = 5#
+tau = 3#
+#
+N = 1000#
+#
+p_true = rgamma(K, 2, 1)#
+p_true = p_true/sum(p_true)#
+mu_true = rnorm(K, 0, 3)#
+c_true = sample(K, size=N, replace=TRUE, prob=p_true)#
+y = rnorm(N, mu_true[c_true], 1)
+hist(y, 20)
+phi_hat = matrix(1/K, nrow=N, ncol=K)
+# initialize variational parameters#
+m_hat = rnorm(K, 0, 1)#
+s2_hat = rgamma(K, 2, 2)
+psi_hat = outer(y, m_hat)
+psi_hat
+m_k^2 + s2_k
+(m_hat^2 + s2_hat)
+?repmat
+?rep
+psi_hat = outer(y, m_hat) - matrix(rep(m_hat^2 + s2_hat, N), ncol=N)
+matrix(rep(m_hat^2 + s2_hat, N), ncol=N)
+psi_hat = outer(y, m_hat) - t(matrix(rep(m_hat^2 + s2_hat, N), ncol=N))
+psi_hat
+epsi_hat = exp(psi_hat
+epsi_hat = exp(psi_hat)
+phi_hat = epsi_hat/rowSums(epsi_hat)
+phi_hat
+rowSums(phi_hat)
+phi_hat
+s2_hat = 1/{1/tau^2 + colSums(phi_hat)}
+s2_hat
+colSums(phi_hat)
+crossprod(phi_hat, y)
+m_hat = s2_hat * drop(crossprod(phi_hat, y))
+m_hat
+mu_true
+for(i in 1:100) {#
+	# update variational distribution for cluster indicators#
+	psi_hat = outer(y, m_hat) - t(matrix(rep(m_hat^2 + s2_hat, N), ncol=N))#
+	epsi_hat = exp(psi_hat)#
+	phi_hat = epsi_hat/rowSums(epsi_hat)#
+	# Update variational distribution for mixture components#
+	s2_hat = 1/{1/tau^2 + colSums(phi_hat)}#
+	m_hat = s2_hat * drop(crossprod(phi_hat, y))#
+	# Check ELBO#
+}
+m_hat
+m_true
+mu_true
+phi_hat
+colMeans(phi_hat)
+# initialize variational parameters#
+m_hat = rnorm(K, 0, 1)#
+s2_hat = rgamma(K, 2, 2)#
+#
+for(i in 1:100) {#
+	# update variational distribution for cluster indicators#
+	psi_hat = outer(y, m_hat) - t(matrix(rep(m_hat^2 + s2_hat/2, N), ncol=N))#
+	epsi_hat = exp(psi_hat)#
+	phi_hat = epsi_hat/rowSums(epsi_hat)#
+	# Update variational distribution for mixture components#
+	s2_hat = 1/{1/tau^2 + colSums(phi_hat)}#
+	m_hat = s2_hat * drop(crossprod(phi_hat, y))#
+	# Check ELBO#
+}#
+#
+m_hat#
+mu_true
+for(i in 1:100) {#
+	# update variational distribution for cluster indicators#
+	psi_hat = outer(y, m_hat) - t(matrix(rep(m_hat^2 + s2_hat/2, N), ncol=N))#
+	epsi_hat = exp(psi_hat)#
+	phi_hat = epsi_hat/rowSums(epsi_hat)#
+	# Update variational distribution for mixture components#
+	s2_hat = 1/{1/tau^2 + colSums(phi_hat)}#
+	m_hat = s2_hat * drop(crossprod(phi_hat, y))#
+	# Check ELBO#
+}#
+#
+m_hat
+s2_hat
+# initialize variational parameters#
+m_hat = rnorm(K, 0, 1)#
+s2_hat = rgamma(K, 2, 2)#
+#
+for(i in 1:100) {#
+	# update variational distribution for cluster indicators#
+	psi_hat = outer(y, m_hat) - t(matrix(rep(m_hat^2 + s2_hat/2, N), ncol=N))#
+	epsi_hat = exp(psi_hat)#
+	phi_hat = epsi_hat/rowSums(epsi_hat)#
+	# Update variational distribution for mixture components#
+	s2_hat = 1/{1/tau^2 + colSums(phi_hat)}#
+	m_hat = s2_hat * drop(crossprod(phi_hat, y))#
+	# Check ELBO#
+}#
+#
+m_hat
+for(i in 1:100) {#
+	# update variational distribution for cluster indicators#
+	psi_hat = outer(y, m_hat) - t(matrix(rep(m_hat^2 + s2_hat/2, N), ncol=N))#
+	epsi_hat = exp(psi_hat)#
+	phi_hat = epsi_hat/rowSums(epsi_hat)#
+	# Update variational distribution for mixture components#
+	s2_hat = 1/{1/tau^2 + colSums(phi_hat)}#
+	m_hat = s2_hat * drop(crossprod(phi_hat, y))#
+	# Check ELBO#
+}#
+#
+m_hat
+# initialize variational parameters#
+m_hat = rnorm(K, 0, 1)#
+s2_hat = rgamma(K, 2, 2)#
+#
+for(i in 1:100) {#
+	# update variational distribution for cluster indicators#
+	psi_hat = outer(y, m_hat) - 0.5*t(matrix(rep(m_hat^2 + s2_hat, N), ncol=N))#
+	epsi_hat = exp(psi_hat)#
+	phi_hat = epsi_hat/rowSums(epsi_hat)#
+	# Update variational distribution for mixture components#
+	s2_hat = 1/{1/tau^2 + colSums(phi_hat)}#
+	m_hat = s2_hat * drop(crossprod(phi_hat, y))#
+	# Check ELBO#
+}#
+#
+m_hat
+for(i in 1:100) {#
+	# update variational distribution for cluster indicators#
+	psi_hat = outer(y, m_hat) - 0.5*t(matrix(rep(m_hat^2 + s2_hat, N), ncol=N))#
+	epsi_hat = exp(psi_hat)#
+	phi_hat = epsi_hat/rowSums(epsi_hat)#
+	# Update variational distribution for mixture components#
+	s2_hat = 1/{1/tau^2 + colSums(phi_hat)}#
+	m_hat = s2_hat * drop(crossprod(phi_hat, y))#
+	# Check ELBO#
+}#
+#
+m_hat
+mu_true
+# Fitting a discrete Gaussian mixture model by variational Bayes#
+#
+K = 5#
+tau = 3#
+#
+N = 1000#
+#
+p_true = 1/K#
+mu_true = rnorm(K, 0, 3)#
+c_true = sample(K, size=N, replace=TRUE, prob=p_true)#
+y = rnorm(N, mu_true[c_true], 1)#
+#
+hist(y, 20)
+# Fitting a discrete Gaussian mixture model by variational Bayes#
+#
+K = 5#
+tau = 3#
+#
+N = 1000#
+#
+p_true = 1/K#
+mu_true = rnorm(K, 0, 3)#
+c_true = sample(K, size=N, replace=TRUE, prob=p_true)#
+y = rnorm(N, mu_true[c_true], 1)#
+#
+hist(y, 20)
+# Fitting a discrete Gaussian mixture model by variational Bayes#
+#
+K = 5#
+tau = 3#
+#
+N = 1000#
+#
+p_true = rep(1/K, K)#
+mu_true = rnorm(K, 0, 3)#
+c_true = sample(K, size=N, replace=TRUE, prob=p_true)#
+y = rnorm(N, mu_true[c_true], 1)#
+#
+hist(y, 20)
+mu_true
+K = 5#
+tau = 3#
+#
+N = 1000#
+#
+p_true = rep(1/K, K)#
+mu_true = rnorm(K, 0, 3)#
+c_true = sample(K, size=N, replace=TRUE, prob=p_true)#
+y = rnorm(N, mu_true[c_true], 1)#
+#
+hist(y, 50)
+mu_true
+library(FDRreg)
+library(devtools)
+library(devtools)
+install_github('jgscott/FDRreg', subdir="R_pkg/")
