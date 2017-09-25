@@ -21,7 +21,7 @@ rep_rows = function(x, n) {
 K = 5
 tau = 3
 N = 1000
-minibatch=100
+minibatch=10
 
 # Mixture model parameters
 p_true = rep(1/K, K)
@@ -53,7 +53,7 @@ while({!converged} & {step_counter <= max_steps}) {
 	idx = sample.int(N,size=minibatch)
   
 	# update variational distribution for cluster indicators
-	if(minibatch >0){
+	if(minibatch >1){
 	  psi_hat = outer(y[idx],m_hat) - (0.5* rep_rows( s2_hat + m_hat^2,minibatch))
 	  epsi_hat = exp(psi_hat)
 	  phi_hat = epsi_hat/rowSums(epsi_hat)
