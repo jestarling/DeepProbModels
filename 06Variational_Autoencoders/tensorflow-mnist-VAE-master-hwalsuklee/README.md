@@ -1,11 +1,10 @@
 # Variational Auto-Encoder for MNIST
-An implementation of variational auto-encoder (VAE) for MNIST described in the paper:    
+An implementation of variational auto-encoder (VAE) for the MNIST dataset described in the paper:    
 * [Auto-Encoding Variational Bayes](https://arxiv.org/pdf/1312.6114) by Kingma et al.
 
 ## Results
-### Reproduce
-Well trained VAE must be able to reproduce input image.  
-Figure 5 in the paper shows reproduce performance of learned generative models for different dimensionalities.  
+### Reproducing an Image
+We reproduce Figure 5 in the paper, showing performance of learned generative models for different latent variable dimensions.   
 The following results can be reproduced with command:  
 ```
 python run_main.py --dim_z <each value> --num_epochs 60
@@ -103,9 +102,9 @@ This code is from:
 [1] https://github.com/hwalsuklee/tensorflow-mnist-VAE  
 
 The above implementation is based on these projects:  
-[1] https://github.com/oduerr/dl_tutorial/tree/master/tensorflow/vae  
-[2] https://github.com/fastforwardlabs/vae-tf/tree/master  
-[3] https://github.com/kvfrans/variational-autoencoder  
-[4] https://github.com/altosaar/vae
+[2] https://github.com/oduerr/dl_tutorial/tree/master/tensorflow/vae  
+[3] https://github.com/fastforwardlabs/vae-tf/tree/master  
+[4] https://github.com/kvfrans/variational-autoencoder  
+[5] https://github.com/altosaar/vae
 
 

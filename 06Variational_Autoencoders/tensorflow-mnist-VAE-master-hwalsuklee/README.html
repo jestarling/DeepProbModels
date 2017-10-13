@@ -121,14 +121,13 @@ $(document).ready(function () {
 
 <div id="variational-auto-encoder-for-mnist" class="section level1">
 <h1>Variational Auto-Encoder for MNIST</h1>
-<p>An implementation of variational auto-encoder (VAE) for MNIST descripbed in the paper:<br />
+<p>An implementation of variational auto-encoder (VAE) for the MNIST dataset described in the paper:<br />
 * <a href="https://arxiv.org/pdf/1312.6114">Auto-Encoding Variational Bayes</a> by Kingma et al.</p>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<div id="reproduce" class="section level3">
-<h3>Reproduce</h3>
-<p>Well trained VAE must be able to reproduce input image.<br />
-Figure 5 in the paper shows reproduce performance of learned generative models for different dimensionalities.<br />
+<div id="reproducing-an-image" class="section level3">
+<h3>Reproducing an Image</h3>
+<p>We reproduce Figure 5 in the paper, showing performance of learned generative models for different latent variable dimensions.<br />
 The following results can be reproduced with command:</p>
 <pre><code>python run_main.py --dim_z &lt;each value&gt; --num_epochs 60</code></pre>
 <table align="center">
@@ -237,7 +236,8 @@ Distribution of labeled data
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
-<p>This code is from: [1] <a href="https://github.com/hwalsuklee/tensorflow-mnist-VAE" class="uri">https://github.com/hwalsuklee/tensorflow-mnist-VAE</a></p>
+<p>This code is from:<br />
+[1] <a href="https://github.com/hwalsuklee/tensorflow-mnist-VAE" class="uri">https://github.com/hwalsuklee/tensorflow-mnist-VAE</a></p>
 <p>The above implementation is based on these projects:<br />
 [1] <a href="https://github.com/oduerr/dl_tutorial/tree/master/tensorflow/vae" class="uri">https://github.com/oduerr/dl_tutorial/tree/master/tensorflow/vae</a><br />
 [2] <a href="https://github.com/fastforwardlabs/vae-tf/tree/master" class="uri">https://github.com/fastforwardlabs/vae-tf/tree/master</a><br />
