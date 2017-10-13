@@ -48,7 +48,7 @@ python run_main.py --dim_z 20 --add_noise True --num_epochs 40
 </table>
 
 ### Learned MNIST manifold
-Visualizations of learned data manifold for generative models with 2-dim. latent space are given in Figure. 4 in the paper.  
+Visualizations of learned data manifold for generative models with 2-dim. latent space are given in Figure. 4 in the paper.  ("Visualizations of learned data manifold for generative models with two-dimensional latent space, learned with AEVB. Since the prior latent space is Gaussian, linearly spaced coordinates on the unit square were transformed through the inverse CDF of the Gaussian space to produce values of the latent variables $$z$$.  For each of these values z, we plotted the corresponding generative $$p_\theta(x|z)$$ with learned parameters $$\theta$$.")
 The following results can be reproduced with command:  
 ```
 python run_main.py --dim_z 2 --num_epochs 60 --PMLR True
