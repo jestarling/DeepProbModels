@@ -1,1 +1,3 @@
 *.pyc
+06Variational_Autoencoders/Presentation
+!06Variational_Autoencoders/Presentation/JS_VAE_slides.pdf
