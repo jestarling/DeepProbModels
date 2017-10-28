@@ -1,5 +1,8 @@
 import tensorflow as tf
 
+# Info on activation functions here:
+# https://www.tensorflow.org/api_guides/python/nn#Activation_Functions
+
 # Gaussian MLP with 2 hidden layers as encoder.
 def gaussian_MLP_encoder(x, n_hidden, n_output, keep_prob):
     with tf.variable_scope("gaussian_MLP_encoder"):
@@ -12,14 +15,14 @@ def gaussian_MLP_encoder(x, n_hidden, n_output, keep_prob):
         w0 = tf.get_variable('w0', [x.get_shape()[1], n_hidden], initializer=w_init)
         b0 = tf.get_variable('b0', [n_hidden], initializer=b_init)
         h0 = tf.matmul(x, w0) + b0
-        h0 = tf.nn.elu(h0)
+        h0 = tf.nn.elu(h0)  #Elu activation function: Computes exponential linear: exp(features) - 1 if < 0, features otherwise.
         h0 = tf.nn.dropout(h0, keep_prob)
 
         # 2nd hidden layer
         w1 = tf.get_variable('w1', [h0.get_shape()[1], n_hidden], initializer=w_init)
         b1 = tf.get_variable('b1', [n_hidden], initializer=b_init)
         h1 = tf.matmul(h0, w1) + b1
-        h1 = tf.nn.tanh(h1)
+        h1 = tf.nn.tanh(h1) # Tanh activation function.
         h1 = tf.nn.dropout(h1, keep_prob)
 
         # output layer
@@ -50,14 +53,14 @@ def bernoulli_MLP_decoder(z, n_hidden, n_output, keep_prob, reuse=False):
         w0 = tf.get_variable('w0', [z.get_shape()[1], n_hidden], initializer=w_init)
         b0 = tf.get_variable('b0', [n_hidden], initializer=b_init)
         h0 = tf.matmul(z, w0) + b0
-        h0 = tf.nn.tanh(h0)
+        h0 = tf.nn.tanh(h0) #Tanh activation function.
         h0 = tf.nn.dropout(h0, keep_prob)
 
         # 2nd hidden layer
         w1 = tf.get_variable('w1', [h0.get_shape()[1], n_hidden], initializer=w_init)
         b1 = tf.get_variable('b1', [n_hidden], initializer=b_init)
         h1 = tf.matmul(h0, w1) + b1
-        h1 = tf.nn.elu(h1)
+        h1 = tf.nn.elu(h1) #Elu activation function: Computes exponential linear: exp(features) - 1 if < 0, features otherwise.
         h1 = tf.nn.dropout(h1, keep_prob)
 
         # output layer-mean
