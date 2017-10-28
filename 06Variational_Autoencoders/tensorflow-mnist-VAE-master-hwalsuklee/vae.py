@@ -1,8 +1,9 @@
 import tensorflow as tf
 
-# Gaussian MLP as encoder
+# Gaussian MLP with 2 hidden layers as encoder.
 def gaussian_MLP_encoder(x, n_hidden, n_output, keep_prob):
     with tf.variable_scope("gaussian_MLP_encoder"):
+        
         # initializers
         w_init = tf.contrib.layers.variance_scaling_initializer()
         b_init = tf.constant_initializer(0.)
@@ -29,16 +30,18 @@ def gaussian_MLP_encoder(x, n_hidden, n_output, keep_prob):
 
         # The mean parameter is unconstrained
         mean = gaussian_params[:, :n_output]
+        
         # The standard deviation must be positive. Parametrize with a softplus and
         # add a small epsilon for numerical stability
         stddev = 1e-6 + tf.nn.softplus(gaussian_params[:, n_output:])
 
     return mean, stddev
 
-# Bernoulli MLP as decoder
+# Bernoulli MLP with 2 hidden layers as decoder.
 def bernoulli_MLP_decoder(z, n_hidden, n_output, keep_prob, reuse=False):
 
     with tf.variable_scope("bernoulli_MLP_decoder", reuse=reuse):
+        
         # initializers
         w_init = tf.contrib.layers.variance_scaling_initializer()
         b_init = tf.constant_initializer(0.)
@@ -64,7 +67,8 @@ def bernoulli_MLP_decoder(z, n_hidden, n_output, keep_prob, reuse=False):
 
     return y
 
-# Gateway
+# Autoencoder: Sets up auto-encoding process, including encoding, sampling latent,
+# decoding, and calculating loss function (-ELBO).
 def autoencoder(x_hat, x, dim_img, dim_z, n_hidden, keep_prob):
 
     # encoding
@@ -90,6 +94,9 @@ def autoencoder(x_hat, x, dim_img, dim_z, n_hidden, keep_prob):
 
     return y, z, loss, -marginal_likelihood, KL_divergence
 
+# Sets up the decoder function.  
+# Calls our Bernoulli decoder because MNIST is binary (black/white).
+# Could also call a Gaussian decoder.
 def decoder(z, dim_img, n_hidden):
 
     y = bernoulli_MLP_decoder(z, n_hidden, dim_img, 1.0, reuse=True)
